@@ -1,2 +1,5 @@
 # controle-de-produtos
-1.
+
+
+IDE de desenvolvimento: VS CODE
+Extensões utilizadas: Live Server - Criação de servidor local para abrir a página login.html
