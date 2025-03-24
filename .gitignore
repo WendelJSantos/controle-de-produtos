@@ -22,3 +22,42 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# 🚀 Arquivos do Maven
+target/
+!target/*.jar
+!target/*.war
+!target/*.ear
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+dependency-reduced-pom.xml
+release.properties
+mvnw
+mvnw.cmd
+
+# 🚀 Arquivos do VS Code
+.vscode/
+
+# 🚀 Logs e Relatórios de Testes
+logs/
+*.log
+test-output/
+reports/
+cucumber-reports/
+allure-results/
+allure-report/
+
+# 🚀 Dependências Locais
+**/node_modules/
+**/.cache/
+
+# 🚀 Arquivos Temporários
+*.tmp
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# 🚀 Variáveis de Ambiente
+.env
