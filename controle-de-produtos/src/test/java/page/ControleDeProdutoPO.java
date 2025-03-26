@@ -27,6 +27,44 @@ public class ControleDeProdutoPO extends BasePO {
         buttonCriar.click();
     }
 
+    @FindBy(id = "codigo")
+    public WebElement inputCodigo;
+    
+    @FindBy(id = "nome")
+    public WebElement inputNome;
+    
+    @FindBy(id = "quantidade")
+    public WebElement inputQuantidade;
+
+    @FindBy(id = "valor")
+    public WebElement inputValor;
+
+    @FindBy(id = "data")
+    public WebElement inputData;
+
+    @FindBy(id = "btn-salvar")
+    public WebElement buttonSalvar;
+
+    public void clicarNoBotaoSalvar(){
+        buttonSalvar.click();
+    }
+    
+    @FindBy(id = "btn-sair")
+    public WebElement buttonSair;
+
+    public void clicarNoBotaoSair(){
+        buttonSair.click();
+    }
+
+    public void cadastrarNovoProduto(String codigo, String nome, String quantidade, String valor, String data){
+        escrever(inputCodigo, codigo);
+        escrever(inputNome, nome);
+        escrever(inputQuantidade, quantidade);
+        escrever(inputValor, valor);
+        escrever(inputData, data);
+        clicarNoBotaoSalvar();
+    }
+
     public ControleDeProdutoPO(WebDriver driver) {
         super(driver);
     }

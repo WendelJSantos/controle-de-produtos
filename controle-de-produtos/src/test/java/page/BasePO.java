@@ -1,6 +1,7 @@
 package page;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 /**
@@ -24,6 +25,11 @@ public abstract class BasePO {
     
     public String obterTituloDaPagina(){
         return driver.getTitle();
+    }
+    
+    public void escrever(WebElement input, String texto){
+        input.clear();
+        input.sendKeys(texto);
     }
 
 }

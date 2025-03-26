@@ -1,4 +1,4 @@
-package br.com.produto.test;
+package test;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
@@ -6,8 +6,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import br.com.produto.page.ControleDeProdutoPO;
-import br.com.produto.page.LoginPO;
+import page.ControleDeProdutoPO;
+import page.LoginPO;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ControleDeProdutoTest extends BaseTest {
@@ -27,13 +27,24 @@ public class ControleDeProdutoTest extends BaseTest {
         assertEquals(TITULO_PAGINA_CONTROLE_DE_PRODUTOS, tituloDaPagina); 
     }
 
+    @Test
+    public void TC001_deveCadastrarProduto(){
+        controleDeProdutoPage.clicarNoBotaoCriar();
+        //  TODO: Remover esse clique duplo assim que o sistema for corrigido.
+        controleDeProdutoPage.clicarNoBotaoCriar();
+        String mensagemModalTittleProduto = controleDeProdutoPage.obterMensagemModalTittleProduto();
+        assertEquals(MODAL_TITTLE_PRODUTO, mensagemModalTittleProduto);
+
+        controleDeProdutoPage.cadastrarNovoProduto("1", "Refrigerante", "15", "7,99", "25/03/2025");
+        controleDeProdutoPage.clicarNoBotaoSair();
+        
+    }
 
     @Test
     public void TC001_deveAbrirModalParaCadastroAoClicarEmCriar(){
         controleDeProdutoPage.clicarNoBotaoCriar();
         //  TODO: Remover esse clique duplo assim que o sistema for corrigido.
         controleDeProdutoPage.clicarNoBotaoCriar();
-        String mensagemModalTittleProduto = controleDeProdutoPage.obterMensagemModalTittleProduto();
-        assertEquals(MODAL_TITTLE_PRODUTO, mensagemModalTittleProduto);
+
     }
 }

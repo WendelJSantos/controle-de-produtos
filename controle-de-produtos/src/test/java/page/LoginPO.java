@@ -21,11 +21,6 @@ public class LoginPO extends BasePO {
     @FindBy(xpath = "//button[@class='close']")
     public WebElement botaoFecharMensagemDeExcecao;
 
-    public void escrever(WebElement input, String texto){
-        input.clear();
-        input.sendKeys(texto);
-    }
-
     public void clicarNoBotaoEntrar(){
         buttonEntrar.click();
     }
