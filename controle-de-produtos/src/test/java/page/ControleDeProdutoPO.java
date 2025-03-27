@@ -4,37 +4,27 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import builder.ProdutoBuilder;
-
+/**
+ * Classe Page Object do Controle de Produto.
+ */
 public class ControleDeProdutoPO extends BasePO {
 
+    // #region WebElements
     @FindBy(css = "ul>li>a.nav-link")
     public WebElement linkVoltar;
-
-    public void clicarNoLinkVoltar() {
-         linkVoltar.click();
-    }
 
     @FindBy(css = "div>h4.modal-title")
     public WebElement modalTittleProduto;
 
-    public String obterMensagemModalTittleProduto() {
-       return modalTittleProduto.getText();
-    }    
-    
     @FindBy(id = "btn-adicionar")
     public WebElement buttonCriar;
-    
-    public void clicarNoBotaoCriar(){
-        buttonCriar.click();
-    }
 
     @FindBy(id = "codigo")
     public WebElement inputCodigo;
-    
+
     @FindBy(id = "nome")
     public WebElement inputNome;
-    
+
     @FindBy(id = "quantidade")
     public WebElement inputQuantidade;
 
@@ -47,30 +37,53 @@ public class ControleDeProdutoPO extends BasePO {
     @FindBy(id = "btn-salvar")
     public WebElement buttonSalvar;
 
-    public void clicarNoBotaoSalvar(){
-        buttonSalvar.click();
-    }
-    
     @FindBy(id = "btn-sair")
     public WebElement buttonSair;
 
-    public void clicarNoBotaoSair(){
+    @FindBy(id = "mensagem")
+    public WebElement spanMensagem;
+    // #endregion WebElements
+
+    // #region Metodos
+    /** Metodo que executa a ação de voltar */
+    public void clicarNoLinkVoltar() {
+        linkVoltar.click();
+    }
+
+    /** Metodo que retorna a mensagem da modal na tela de produto */
+    public String obterMensagemModalTittleProduto() {
+        return modalTittleProduto.getText();
+    }
+
+    /** Metodo que executa a ação abrir a modal para cadastro de produto */
+    public void clicarNoBotaoCriar() {
+        buttonCriar.click();
+    }
+
+    /** Metodo que executa a ação sair da modal de cadastro do produto */
+    public void clicarNoBotaoSair() {
         buttonSair.click();
     }
 
-    @FindBy(id = "mensagem")
-    public WebElement spanMensagem;
-    
-    public String obterSpanMensagem(){
+    /** Metodo que executa a ação de cadastrar um produto */
+    public void clicarNoBotaoSalvar() {
+        buttonSalvar.click();
+    }
+
+    /**
+     * Metodo que retorna a mensagem de exceção na tela da modal do cadastro de
+     * produto
+     */
+    public String obterSpanMensagem() {
         return spanMensagem.getText();
     }
 
-    public void cadastrarNovoProduto(ProdutoBuilder produtoBuilder){
-        produtoBuilder.builder();
-    }
+    // #endregion Metodos
 
+    // #region Construtor
     public ControleDeProdutoPO(WebDriver driver) {
         super(driver);
     }
+    // #endregion Construtor
 
 }
