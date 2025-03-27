@@ -7,11 +7,10 @@ import page.ControleDeProdutoPO;
  */
 public class ProdutoBuilder {
 
-    private String codigo = "00001";
-    private String nome = "Produto Padrão";
-    private String quantidade = "1";
-    private String valor = "1.0";
-    private String data = "25/03/2025";
+
+
+
+
 
     private ControleDeProdutoPO controleDeProdutoPO;
 
