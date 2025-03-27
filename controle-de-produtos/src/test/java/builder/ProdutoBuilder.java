@@ -2,6 +2,9 @@ package builder;
 
 import page.ControleDeProdutoPO;
 
+/**
+* Classe que sabe construir ou adicionar um produto na tela
+*/
 public class ProdutoBuilder {
 
     private String codigo = "00001";
@@ -12,6 +15,7 @@ public class ProdutoBuilder {
 
     private ControleDeProdutoPO controleDeProdutoPO;
 
+    /**Construtor do ProdutoBuilder que recebe a página de controle de produtos. */
     public ProdutoBuilder (ControleDeProdutoPO controleDeProdutoPO){
         this.controleDeProdutoPO = controleDeProdutoPO;
     }
