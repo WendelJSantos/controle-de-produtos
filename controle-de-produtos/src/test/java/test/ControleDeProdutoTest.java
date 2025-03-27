@@ -5,11 +5,13 @@ import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-
 import builder.ProdutoBuilder;
 import page.ControleDeProdutoPO;
 import page.LoginPO;
 
+/**
+ * Classe responsável pelos testes da tela de consulta e cadastro de produtos
+ */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ControleDeProdutoTest extends BaseTest {
 
@@ -18,39 +20,51 @@ public class ControleDeProdutoTest extends BaseTest {
     private static String TITULO_PAGINA_CONTROLE_DE_PRODUTOS = "Controle de Produtos";
     private static String MODAL_TITTLE_PRODUTO = "Produto";
     private String mensagem = "Todos os campos são obrigatórios para o cadastro!";
-    
+
+    /*
+     * Metodo que prepara os testes para acessar a tela de consulta e cadastro de
+     * produtos
+     */
     @BeforeClass
-    public static void prepararTestes(){
+    public static void prepararTestes() {
         loginPage = new LoginPO(driver);
         loginPage.executarAcaoDeLogar("admin@admin.com", "admin@123");
         controleDeProdutoPage = new ControleDeProdutoPO(driver);
         String tituloDaPagina = loginPage.obterTituloDaPagina();
-        assertEquals(TITULO_PAGINA_CONTROLE_DE_PRODUTOS, tituloDaPagina); 
+        assertEquals(TITULO_PAGINA_CONTROLE_DE_PRODUTOS, tituloDaPagina);
     }
 
+    /*
+     * Metodo de teste responsável por validar que o sistema não permite cadastrar
+     * produto com o campo Código em branco
+     */
     @Test
-    public void TC001_naoDeveCadastrarProdutoComOCampoCodigoEmBranco(){
+    public void TC001_naoDeveCadastrarProdutoComOCampoCodigoEmBranco() {
         controleDeProdutoPage.clicarNoBotaoCriar();
-        //  TODO: Remover esse clique duplo assim que o sistema for corrigido.
+        // TODO: Remover esse clique duplo assim que o sistema for corrigido.
         controleDeProdutoPage.clicarNoBotaoCriar();
 
-         String mensagemModalTittleProduto = controleDeProdutoPage.obterMensagemModalTittleProduto();
+        String mensagemModalTittleProduto = controleDeProdutoPage.obterMensagemModalTittleProduto();
         assertEquals(MODAL_TITTLE_PRODUTO, mensagemModalTittleProduto);
 
         ProdutoBuilder produtoBuilder = new ProdutoBuilder(controleDeProdutoPage);
         produtoBuilder
-        .adicionarCodigo("")
-        .builder();
+                .adicionarCodigo("")
+                .builder();
 
         assertEquals(mensagem, controleDeProdutoPage.obterSpanMensagem());
         controleDeProdutoPage.clicarNoBotaoSair();
-        
+
     }
 
+    /*
+     * Metodo de teste responsável por validar que o sistema permite cadastrar
+     * produto com todos os campos preenchidos corretamente
+     */
     @Test
-    public void TC002_deveCadastrarNovoProdutoPadrão(){
+    public void TC002_deveCadastrarNovoProdutoPadrão() {
         controleDeProdutoPage.clicarNoBotaoCriar();
-        //  TODO: Remover esse clique duplo assim que o sistema for corrigido.
+        // TODO: Remover esse clique duplo assim que o sistema for corrigido.
         controleDeProdutoPage.clicarNoBotaoCriar();
 
         String mensagemModalTittleProduto = controleDeProdutoPage.obterMensagemModalTittleProduto();
