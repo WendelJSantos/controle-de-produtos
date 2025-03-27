@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import builder.ProdutoBuilder;
+
 public class ControleDeProdutoPO extends BasePO {
 
     @FindBy(css = "ul>li>a.nav-link")
@@ -56,13 +58,15 @@ public class ControleDeProdutoPO extends BasePO {
         buttonSair.click();
     }
 
-    public void cadastrarNovoProduto(String codigo, String nome, String quantidade, String valor, String data){
-        escrever(inputCodigo, codigo);
-        escrever(inputNome, nome);
-        escrever(inputQuantidade, quantidade);
-        escrever(inputValor, valor);
-        escrever(inputData, data);
-        clicarNoBotaoSalvar();
+    @FindBy(id = "mensagem")
+    public WebElement spanMensagem;
+    
+    public String obterSpanMensagem(){
+        return spanMensagem.getText();
+    }
+
+    public void cadastrarNovoProduto(ProdutoBuilder produtoBuilder){
+        produtoBuilder.builder();
     }
 
     public ControleDeProdutoPO(WebDriver driver) {
