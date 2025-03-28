@@ -1,16 +1,18 @@
 package builder;
 
 import page.ControleDeProdutoPO;
+import config.Constants;
 
 /**
  * Classe que sabe construir ou adicionar um produto na tela
  */
 public class ProdutoBuilder {
 
-
-
-
-
+    private String codigo = Constants.CODIGO_PRODUTO_PADRAO;
+    private String nome = Constants.NOME_PRODUTO_PADRAO;
+    private String quantidade = Constants.QUANTIDADE_PRODUTO_PADRAO;
+    private String valor = Constants.VALOR_PRODUTO_PADRAO;
+    private String data = Constants.DATA_PRODUTO_PADRAO;
 
     private ControleDeProdutoPO controleDeProdutoPO;
 

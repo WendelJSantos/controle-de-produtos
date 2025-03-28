@@ -6,6 +6,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import page.LoginPO;
+import config.Constants;
 
 /**
  * Classe responsável pelos testes da tela de login do sistema
@@ -14,9 +15,6 @@ import page.LoginPO;
 public class LoginTest extends BaseTest {
 
     private static LoginPO loginPage;
-    private static String MENSAGEM_CAMPOS_EM_BRANCO = "Informe usuário e senha, os campos não podem ser brancos.";
-    private static String MENSAGEM_CAMPOS_INVALIDOS = "E-mail ou senha inválidos";
-    private static String TITULO_PAGINA_CONTROLE_DE_PRODUTOS = "Controle de Produtos";
 
     /*
      * Metodo que prepara o sistema para realizar o login
@@ -34,7 +32,7 @@ public class LoginTest extends BaseTest {
     public void TC001_naoDeveLogarNoSistemaComOsCamposEmailESenhaVazios() {
         loginPage.executarAcaoDeLogar("", "");
         String mensagemExcecao = loginPage.obterMensagemExcecao();
-        assertEquals(MENSAGEM_CAMPOS_EM_BRANCO, mensagemExcecao);
+        assertEquals(Constants.MENSAGEM_CAMPOS_EM_BRANCO, mensagemExcecao);
     }
 
     /*
@@ -43,9 +41,9 @@ public class LoginTest extends BaseTest {
      */
     @Test
     public void TC002_naoDeveLogarNoSistemaComOCampoSenhaVazio() {
-        loginPage.executarAcaoDeLogar("admin@admin.com", "");
+        loginPage.executarAcaoDeLogar(Constants.EMAIL_VALIDO, "");
         String mensagemExcecao = loginPage.obterMensagemExcecao();
-        assertEquals(MENSAGEM_CAMPOS_EM_BRANCO, mensagemExcecao);
+        assertEquals(Constants.MENSAGEM_CAMPOS_EM_BRANCO, mensagemExcecao);
     }
 
     /*
@@ -54,9 +52,9 @@ public class LoginTest extends BaseTest {
      */
     @Test
     public void TC003_naoDeveLogarNoSistemaComOCampoEmailVazio() {
-        loginPage.executarAcaoDeLogar("", "admin@123");
+        loginPage.executarAcaoDeLogar("", Constants.SENHA_VALIDA);
         String mensagemExcecao = loginPage.obterMensagemExcecao();
-        assertEquals(MENSAGEM_CAMPOS_EM_BRANCO, mensagemExcecao);
+        assertEquals(Constants.MENSAGEM_CAMPOS_EM_BRANCO, mensagemExcecao);
     }
 
     /*
@@ -67,7 +65,7 @@ public class LoginTest extends BaseTest {
     public void TC004_naoDeveLogarNoSistemaComOsCamposEmailESenhaInvalidos() {
         loginPage.executarAcaoDeLogar("teste", "teste");
         String mensagemExcecao = loginPage.obterMensagemExcecao();
-        assertEquals(MENSAGEM_CAMPOS_INVALIDOS, mensagemExcecao);
+        assertEquals(Constants.MENSAGEM_CAMPOS_INVALIDOS, mensagemExcecao);
     }
 
     /*
@@ -76,9 +74,9 @@ public class LoginTest extends BaseTest {
      */
     @Test
     public void TC005_naoDeveLogarNoSistemaComOCampoEmailInvalido() {
-        loginPage.executarAcaoDeLogar("teste", "admin@123");
+        loginPage.executarAcaoDeLogar("teste", Constants.SENHA_VALIDA);
         String mensagemExcecao = loginPage.obterMensagemExcecao();
-        assertEquals(MENSAGEM_CAMPOS_INVALIDOS, mensagemExcecao);
+        assertEquals(Constants.MENSAGEM_CAMPOS_INVALIDOS, mensagemExcecao);
     }
 
     /*
@@ -87,9 +85,9 @@ public class LoginTest extends BaseTest {
      */
     @Test
     public void TC006_naoDeveLogarNoSistemaComOCampoSenhaInvalido() {
-        loginPage.executarAcaoDeLogar("admin@admin.com", "teste");
+        loginPage.executarAcaoDeLogar(Constants.EMAIL_VALIDO, "teste");
         String mensagemExcecao = loginPage.obterMensagemExcecao();
-        assertEquals(MENSAGEM_CAMPOS_INVALIDOS, mensagemExcecao);
+        assertEquals(Constants.MENSAGEM_CAMPOS_INVALIDOS, mensagemExcecao);
     }
 
     /*
@@ -98,8 +96,8 @@ public class LoginTest extends BaseTest {
      */
     @Test
     public void TC007_deveLogarNoSistemaComOsCamposEmailESenhaCorretos() {
-        loginPage.executarAcaoDeLogar("admin@admin.com", "admin@123");
+        loginPage.executarAcaoDeLogar(Constants.EMAIL_VALIDO, Constants.SENHA_VALIDA);
         String tituloDaPagina = loginPage.obterTituloDaPagina();
-        assertEquals(TITULO_PAGINA_CONTROLE_DE_PRODUTOS, tituloDaPagina);
+        assertEquals(Constants.TITULO_PAGINA_CONTROLE_DE_PRODUTOS, tituloDaPagina);
     }
 }

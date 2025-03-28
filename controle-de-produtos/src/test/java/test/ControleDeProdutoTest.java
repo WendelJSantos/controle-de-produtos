@@ -8,6 +8,7 @@ import org.junit.runners.MethodSorters;
 import builder.ProdutoBuilder;
 import page.ControleDeProdutoPO;
 import page.LoginPO;
+import config.Constants;
 
 /**
  * Classe responsável pelos testes da tela de consulta e cadastro de produtos
@@ -17,12 +18,9 @@ public class ControleDeProdutoTest extends BaseTest {
 
     private static ControleDeProdutoPO controleDeProdutoPage;
     private static LoginPO loginPage;
-    private static String TITULO_PAGINA_CONTROLE_DE_PRODUTOS = "Controle de Produtos";
-    private static String MODAL_TITTLE_PRODUTO = "Produto";
-    private String mensagem = "Todos os campos são obrigatórios para o cadastro!";
 
     /*
-     * Metodo que prepara os testes para acessar a tela de consulta e cadastro de
+     * Metodo que prepara os sistema para acessar a tela de consulta e cadastro de
      * produtos
      */
     @BeforeClass
@@ -31,7 +29,7 @@ public class ControleDeProdutoTest extends BaseTest {
         loginPage.executarAcaoDeLogar("admin@admin.com", "admin@123");
         controleDeProdutoPage = new ControleDeProdutoPO(driver);
         String tituloDaPagina = loginPage.obterTituloDaPagina();
-        assertEquals(TITULO_PAGINA_CONTROLE_DE_PRODUTOS, tituloDaPagina);
+        assertEquals(Constants.TITULO_PAGINA_CONTROLE_DE_PRODUTOS, tituloDaPagina);
     }
 
     /*
@@ -45,14 +43,14 @@ public class ControleDeProdutoTest extends BaseTest {
         controleDeProdutoPage.clicarNoBotaoCriar();
 
         String mensagemModalTittleProduto = controleDeProdutoPage.obterMensagemModalTittleProduto();
-        assertEquals(MODAL_TITTLE_PRODUTO, mensagemModalTittleProduto);
+        assertEquals(Constants.DESCRICAO_MODAL_TITTLE_PRODUTO, mensagemModalTittleProduto);
 
         ProdutoBuilder produtoBuilder = new ProdutoBuilder(controleDeProdutoPage);
         produtoBuilder
                 .adicionarCodigo("")
                 .builder();
 
-        assertEquals(mensagem, controleDeProdutoPage.obterSpanMensagem());
+        assertEquals(Constants.MENSAGEM_CAMPOS_OBRIGATORIOS, controleDeProdutoPage.obterSpanMensagem());
         controleDeProdutoPage.clicarNoBotaoSair();
 
     }
@@ -68,7 +66,7 @@ public class ControleDeProdutoTest extends BaseTest {
         controleDeProdutoPage.clicarNoBotaoCriar();
 
         String mensagemModalTittleProduto = controleDeProdutoPage.obterMensagemModalTittleProduto();
-        assertEquals(MODAL_TITTLE_PRODUTO, mensagemModalTittleProduto);
+        assertEquals(Constants.DESCRICAO_MODAL_TITTLE_PRODUTO, mensagemModalTittleProduto);
 
         ProdutoBuilder produtoBuilder = new ProdutoBuilder(controleDeProdutoPage);
 
