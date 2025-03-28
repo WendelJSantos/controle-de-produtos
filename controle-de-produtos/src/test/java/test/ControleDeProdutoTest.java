@@ -26,7 +26,7 @@ public class ControleDeProdutoTest extends BaseTest {
     @BeforeClass
     public static void prepararTestes() {
         loginPage = new LoginPO(driver);
-        loginPage.executarAcaoDeLogar("admin@admin.com", "admin@123");
+        loginPage.executarAcaoDeLogar(Constants.EMAIL_VALIDO, Constants.SENHA_VALIDA);
         controleDeProdutoPage = new ControleDeProdutoPO(driver);
         String tituloDaPagina = loginPage.obterTituloDaPagina();
         assertEquals(Constants.TITULO_PAGINA_CONTROLE_DE_PRODUTOS, tituloDaPagina);
