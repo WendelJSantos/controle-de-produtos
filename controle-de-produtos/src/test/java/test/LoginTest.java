@@ -31,8 +31,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void TC001_naoDeveLogarNoSistemaComOsCamposEmailESenhaVazios() {
         loginPage.executarAcaoDeLogar("", "");
-        String mensagemExcecao = loginPage.obterMensagemExcecao();
-        assertEquals(Constants.MENSAGEM_CAMPOS_EM_BRANCO, mensagemExcecao);
+        assertEquals(Constants.MENSAGEM_CAMPOS_EM_BRANCO, loginPage.obterMensagemExcecao());
     }
 
     /*
@@ -42,8 +41,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void TC002_naoDeveLogarNoSistemaComOCampoSenhaVazio() {
         loginPage.executarAcaoDeLogar(Constants.EMAIL_VALIDO, "");
-        String mensagemExcecao = loginPage.obterMensagemExcecao();
-        assertEquals(Constants.MENSAGEM_CAMPOS_EM_BRANCO, mensagemExcecao);
+        assertEquals(Constants.MENSAGEM_CAMPOS_EM_BRANCO, loginPage.obterMensagemExcecao());
     }
 
     /*
@@ -53,8 +51,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void TC003_naoDeveLogarNoSistemaComOCampoEmailVazio() {
         loginPage.executarAcaoDeLogar("", Constants.SENHA_VALIDA);
-        String mensagemExcecao = loginPage.obterMensagemExcecao();
-        assertEquals(Constants.MENSAGEM_CAMPOS_EM_BRANCO, mensagemExcecao);
+        assertEquals(Constants.MENSAGEM_CAMPOS_EM_BRANCO, loginPage.obterMensagemExcecao());
     }
 
     /*
@@ -64,8 +61,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void TC004_naoDeveLogarNoSistemaComOsCamposEmailESenhaInvalidos() {
         loginPage.executarAcaoDeLogar("teste", "teste");
-        String mensagemExcecao = loginPage.obterMensagemExcecao();
-        assertEquals(Constants.MENSAGEM_CAMPOS_INVALIDOS, mensagemExcecao);
+        assertEquals(Constants.MENSAGEM_CAMPOS_INVALIDOS, loginPage.obterMensagemExcecao());
     }
 
     /*
@@ -75,8 +71,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void TC005_naoDeveLogarNoSistemaComOCampoEmailInvalido() {
         loginPage.executarAcaoDeLogar("teste", Constants.SENHA_VALIDA);
-        String mensagemExcecao = loginPage.obterMensagemExcecao();
-        assertEquals(Constants.MENSAGEM_CAMPOS_INVALIDOS, mensagemExcecao);
+        assertEquals(Constants.MENSAGEM_CAMPOS_INVALIDOS, loginPage.obterMensagemExcecao());
     }
 
     /*
@@ -86,8 +81,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void TC006_naoDeveLogarNoSistemaComOCampoSenhaInvalido() {
         loginPage.executarAcaoDeLogar(Constants.EMAIL_VALIDO, "teste");
-        String mensagemExcecao = loginPage.obterMensagemExcecao();
-        assertEquals(Constants.MENSAGEM_CAMPOS_INVALIDOS, mensagemExcecao);
+        assertEquals(Constants.MENSAGEM_CAMPOS_INVALIDOS, loginPage.obterMensagemExcecao());
     }
 
     /*
@@ -97,7 +91,6 @@ public class LoginTest extends BaseTest {
     @Test
     public void TC007_deveLogarNoSistemaComOsCamposEmailESenhaCorretos() {
         loginPage.executarAcaoDeLogar(Constants.EMAIL_VALIDO, Constants.SENHA_VALIDA);
-        String tituloDaPagina = loginPage.obterTituloDaPagina();
-        assertEquals(Constants.TITULO_PAGINA_CONTROLE_DE_PRODUTOS, tituloDaPagina);
+        assertEquals(Constants.TITULO_PAGINA_CONTROLE_DE_PRODUTOS, loginPage.obterTituloDaPagina());
     }
 }
