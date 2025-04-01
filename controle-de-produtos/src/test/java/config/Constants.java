@@ -25,6 +25,7 @@ public class Constants {
     public static final String CAMINHO_DRIVER = "src/test/java/resource/chromedriver.exe";
 
     public static final String TITULO_PAGINA_CONTROLE_DE_PRODUTOS = "Controle de Produtos";
+    public static final String TITULO_PAGINA_LOGIN = "Login";
     public static final String DESCRICAO_MODAL_TITTLE_PRODUTO = "Produto";
     public static final String MENSAGEM_CAMPOS_OBRIGATORIOS = "Todos os campos são obrigatórios para o cadastro!";
 
@@ -34,4 +35,5 @@ public class Constants {
     public static final String MENSAGEM_CAMPOS_EM_BRANCO = "Informe usuário e senha, os campos não podem ser brancos.";
     public static final String MENSAGEM_CAMPOS_INVALIDOS = "E-mail ou senha inválidos";
 
+    public static final String MENSAGEM_VAZIA = "";
 }

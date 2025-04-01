@@ -11,14 +11,14 @@ import org.openqa.selenium.support.PageFactory;
 public abstract class BasePO {
 
     /* Driver base que será usadao pelas pages */
-    protected WebDriver driver;
+    protected static WebDriver driver;
 
     /**
      * Construtor base para criação da fabrica de elementos (PageFactory).
      * @param driver Driver da página atual
      */
     public BasePO (WebDriver driver){
-        this.driver = driver;
+        BasePO.driver = driver;
         PageFactory.initElements(driver, this);    
     }
     
