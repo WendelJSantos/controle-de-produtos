@@ -1,7 +1,7 @@
 package test;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import config.Constants;
@@ -10,26 +10,29 @@ import config.Constants;
 public class BaseTest {
 
     /* Driver do navegador da página atual */
-    protected static WebDriver driver;
+    protected WebDriver driver;
 
     /*
      * Metodo para inicializar o driver do navegador antes de qualquer classe de
      * teste
      */
-    @BeforeClass
-    public static void iniciar() {
-        System.setProperty(("webdriver.chrome.driver"), Constants.CAMINHO_DRIVER);
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get(Constants.URB_BASE);
+    @BeforeEach
+    public void iniciar() {
+        if (driver == null) {
+            System.setProperty(("webdriver.chrome.driver"), Constants.CAMINHO_DRIVER);
+            driver = new ChromeDriver();
+            driver.manage().window().maximize();
+            driver.get(Constants.URB_BASE);
+        }
     }
 
     /*
      * Metodo para finalizar o driver do navegador antes de qualquer classe de teste
      */
-    @AfterClass
-    public static void finalizar() {
-        driver.quit();
+    @AfterEach
+    public void finalizar() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
-
 }

@@ -41,4 +41,10 @@ public class Constants {
 
     public static final List<String> CAMPOS_TABELA = List.of("codigo", "nome", "quantidade", "valor", "data", "acao");
 
+    public static final String NOME_COLUNA_CODIGO = "Código";
+    public static final String NOME_COLUNA_NOME = "Nome";
+    public static final String NOME_COLUNA_QUANTIDADE = "Quantidade";
+    public static final String NOME_COLUNA_VALOR = "Valor";
+    public static final String NOME_COLUNA_DATA_DE_CRIACAO = "Data de Criação";
+    public static final String NOME_COLUNA_ACAO = "Ação";
 }

@@ -2,49 +2,45 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
 import java.util.List;
 import java.util.Map;
-
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.testng.asserts.SoftAssert;
 import builder.ProdutoBuilder;
+import config.Constants;
 import page.ControleDeProdutoPO;
 import page.LoginPO;
-import config.Constants;
 
 /**
  * Classe responsável pelos testes da tela de consulta e cadastro de produtos
  */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ControleDeProdutoTest extends BaseTest {
 
-    private static ControleDeProdutoPO controleDeProdutoPage;
-    private static LoginPO loginPage;
+    private ControleDeProdutoPO controleDeProdutoPage;
+    private LoginPO loginPage;
+    SoftAssert softAssert = new SoftAssert();
 
     /*
      * Metodo que prepara os sistema para acessar a tela de consulta e cadastro de
      * produtos
      */
-    @BeforeClass
-    public static void prepararTestes() {
-        loginPage = new LoginPO(driver);
+    @BeforeEach
+    public void setUp() {
+        super.iniciar(); // Garante que o driver seja inicializado antes de usar
+        loginPage = new LoginPO(driver); // Inicializa loginPage
+        controleDeProdutoPage = new ControleDeProdutoPO(driver); // Inicializa controleDeProdutoPage
         loginPage.executarAcaoDeLogar(Constants.EMAIL_VALIDO, Constants.SENHA_VALIDA);
-        controleDeProdutoPage = new ControleDeProdutoPO(driver);
-        String tituloDaPagina = loginPage.obterTituloDaPagina();
-        assertEquals(Constants.TITULO_PAGINA_CONTROLE_DE_PRODUTOS, tituloDaPagina);
+        // Valida que o sistema está na página do Controle de Produtos
+        assertEquals(Constants.TITULO_PAGINA_CONTROLE_DE_PRODUTOS, loginPage.obterTituloDaPagina());
     }
 
-    /*
-     * Metodo de teste responsável por validar que o sistema não permite cadastrar
-     * produto com o campo Código em branco
-     */
+    // Metodo de teste responsável por validar que o sistema não permite cadastrar
+    // produto com o campo Código em branco
     @Test
     public void TC001_naoDeveCadastrarProdutoComOCampoCodigoEmBranco() {
-        controleDeProdutoPage.clicarNoBotaoCriar();
         // TODO: Remover esse clique duplo assim que o sistema for corrigido.
+        controleDeProdutoPage.clicarNoBotaoCriar();
         controleDeProdutoPage.clicarNoBotaoCriar();
 
         assertEquals(Constants.DESCRICAO_MODAL_TITTLE_PRODUTO,
@@ -167,7 +163,8 @@ public class ControleDeProdutoTest extends BaseTest {
     }
 
     /*
-     * Caso de teste falhando. O link voltar não está retornando para a tela de login.
+     * Caso de teste falhando. O link voltar não está retornando para a tela de
+     * login.
      */
     @Test
     public void TC007_deveRetornarParaATelaDeLoginAoClicarNoLinkVoltar() {
@@ -175,69 +172,56 @@ public class ControleDeProdutoTest extends BaseTest {
         assertEquals(Constants.TITULO_PAGINA_LOGIN, loginPage.obterTituloDaPagina());
     }
 
-
     @Test
     public void TC008_deveRetornarOsUltimosProdutosCadastrados() {
         controleDeProdutoPage.clicarNoBotaoCriar();
         controleDeProdutoPage.clicarNoBotaoCriar();
-
         ProdutoBuilder produtoBuilder = new ProdutoBuilder(controleDeProdutoPage);
         produtoBuilder.builder();
 
         produtoBuilder
-        .adicionarCodigo("2")
-        .adicionarNome("nome 2")
-        .adicionarQuantidade("2")
-        .adicionarValor("2")
-        .builder();
+                .adicionarCodigo("2")
+                .adicionarNome("nome 2")
+                .adicionarQuantidade("2")
+                .adicionarValor("2")
+                .builder();
 
         produtoBuilder
-        .adicionarCodigo("3")
-        .adicionarNome("nome 3")
-        .adicionarQuantidade("3")
-        .adicionarValor("3")
-        .builder();
+                .adicionarCodigo("3")
+                .adicionarNome("nome 3")
+                .adicionarQuantidade("3")
+                .adicionarValor("3")
+                .builder();
 
         controleDeProdutoPage.clicarNoBotaoSair();
 
         Map<String, List<String>> produtosCadastrados = controleDeProdutoPage.extrairDadosTabela();
-        
-        assertTrue(produtosCadastrados.get("valor").contains("50.0"));
-        assertTrue(produtosCadastrados.get("valor").contains("2"));
-        assertTrue(produtosCadastrados.get("valor").contains("3"));
 
-     
+        // Melhorar asserção posteriormente para identificar exatamente qual asserção
+        // falhou e por qual motivo
+        softAssert.assertTrue(produtosCadastrados.get("valor").contains("50.0"));
+        softAssert.assertTrue(produtosCadastrados.get("valor").contains("2"));
+        softAssert.assertTrue(produtosCadastrados.get("valor").contains("3"));
+        softAssert.assertAll();
+
     }
 
+    @Test
+    public void TC009_deveRetornarOsNomesDasColunasDaTabelaPadronizadosEEmPortugues() {
 
+        Map<String, String> nomeColuna = controleDeProdutoPage.extrairNomeDasColunasDaTabela();
 
+        softAssert.assertEquals(nomeColuna.get("codigo"), Constants.NOME_COLUNA_CODIGO);
+        softAssert.assertEquals(nomeColuna.get("nome"), Constants.NOME_COLUNA_NOME);
+        softAssert.assertEquals(nomeColuna.get("quantidade"), Constants.NOME_COLUNA_QUANTIDADE);
+        softAssert.assertEquals(nomeColuna.get("valor"), Constants.NOME_COLUNA_VALOR);
+        softAssert.assertEquals(nomeColuna.get("data"), Constants.NOME_COLUNA_DATA_DE_CRIACAO);
+        softAssert.assertEquals(nomeColuna.get("acao"), Constants.NOME_COLUNA_ACAO);
 
+        softAssert.assertAll();
 
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     /*
      * Metodo de teste responsável por validar que o sistema permite cadastrar
      * produto com todos os campos preenchidos corretamente

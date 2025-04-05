@@ -63,7 +63,11 @@ public class ControleDeProdutoPO extends BasePO {
     public List<WebElement> linhasTabelaProduto;
 
     public List<WebElement> obterColunasDaLinha(WebElement linha) {
-        return linha.findElements(By.tagName("td"));
+        return linha.findElements(By.cssSelector("table td"));
+    }
+
+    public List<WebElement> obterTitulosDasColunas(WebElement linha) {
+        return linha.findElements(By.cssSelector("table th"));
     }
     // #endregion WebElements
 
@@ -127,6 +131,26 @@ public class ControleDeProdutoPO extends BasePO {
             driver.quit();
         }
         return dadosTabela;
+    }
+
+    public Map<String, String> extrairNomeDasColunasDaTabela() {
+        // Inicializa um mapa para armazenar os nomes das colunas
+        Map<String, String> nomesDasColunas = new HashMap<>();
+    
+        try {
+            // Pega a primeira linha da tabela (cabeçalho) e extrai as colunas
+            List<WebElement> colunasCabecalho = obterTitulosDasColunas(linhasTabelaProduto.get(0));
+    
+            // Para cada coluna no cabeçalho, mapeia o nome para um campo específico
+            IntStream.range(0, Constants.CAMPOS_TABELA.size())
+                    .forEach(i -> nomesDasColunas.put(Constants.CAMPOS_TABELA.get(i), colunasCabecalho.get(i).getText()));
+    
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    
+        // Retorna o mapa com os nomes das colunas
+        return nomesDasColunas;
     }
 
     // #endregion Metodos

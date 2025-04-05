@@ -1,12 +1,12 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runners.MethodSorters;
-import page.LoginPO;
 import config.Constants;
+import page.LoginPO;
 
 /**
  * Classe responsável pelos testes da tela de login do sistema
@@ -14,14 +14,12 @@ import config.Constants;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LoginTest extends BaseTest {
 
-    private static LoginPO loginPage;
+    private LoginPO loginPage;
 
-    /*
-     * Metodo que prepara o sistema para realizar o login
-     */
-    @BeforeClass
-    public static void prepararTestes() {
-        loginPage = new LoginPO(driver);
+    @BeforeEach
+    public void setUp() {
+        super.iniciar(); // Garante que o driver seja inicializado antes de usar
+        loginPage = new LoginPO(driver); // Inicializa loginPage
     }
 
     /*
