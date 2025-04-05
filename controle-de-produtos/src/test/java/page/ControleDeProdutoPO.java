@@ -62,9 +62,6 @@ public class ControleDeProdutoPO extends BasePO {
     @FindBy(css = "table tr")
     public List<WebElement> linhasTabelaProduto;
 
-    @FindBy(tagName = "td")
-    public List<WebElement> colunasTabelaProduto;
-
     public List<WebElement> obterColunasDaLinha(WebElement linha) {
         return linha.findElements(By.tagName("td"));
     }
