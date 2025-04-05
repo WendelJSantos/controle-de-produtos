@@ -1,5 +1,7 @@
 package config;
 
+import java.util.List;
+
 /*
  * A classe {@code Constants} armazena valores constantes utilizados 
  * em toda a automação, como URLs, tempos de espera, seletores e 
@@ -36,4 +38,7 @@ public class Constants {
     public static final String MENSAGEM_CAMPOS_INVALIDOS = "E-mail ou senha inválidos";
 
     public static final String MENSAGEM_VAZIA = "";
+
+    public static final List<String> CAMPOS_TABELA = List.of("codigo", "nome", "quantidade", "valor", "data", "acao");
+
 }

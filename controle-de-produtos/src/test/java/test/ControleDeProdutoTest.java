@@ -186,23 +186,25 @@ public class ControleDeProdutoTest extends BaseTest {
 
         produtoBuilder
         .adicionarCodigo("2")
-        .adicionarNome("2nome")
-        .adicionarQuantidade("2qtde")
-        .adicionarValor("2valor")
+        .adicionarNome("nome 2")
+        .adicionarQuantidade("2")
+        .adicionarValor("2")
         .builder();
 
         produtoBuilder
         .adicionarCodigo("3")
-        .adicionarNome("3nome")
-        .adicionarQuantidade("3qtde")
-        .adicionarValor("3valor")
+        .adicionarNome("nome 3")
+        .adicionarQuantidade("3")
+        .adicionarValor("3")
         .builder();
 
         controleDeProdutoPage.clicarNoBotaoSair();
 
         Map<String, List<String>> produtosCadastrados = controleDeProdutoPage.extrairDadosTabela();
         
-        assertTrue(produtosCadastrados.get("valores").contains("2valor"));
+        assertTrue(produtosCadastrados.get("valor").contains("50.0"));
+        assertTrue(produtosCadastrados.get("valor").contains("2"));
+        assertTrue(produtosCadastrados.get("valor").contains("3"));
 
      
     }
