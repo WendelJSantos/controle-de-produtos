@@ -1,17 +1,14 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runners.MethodSorters;
 import config.Constants;
 import page.LoginPO;
 
 /**
  * Classe responsável pelos testes da tela de login do sistema
  */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LoginTest extends BaseTest {
 
     private LoginPO loginPage;

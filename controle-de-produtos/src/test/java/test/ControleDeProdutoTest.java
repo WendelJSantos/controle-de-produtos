@@ -1,14 +1,19 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.List;
 import java.util.Map;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testng.asserts.SoftAssert;
+
 import builder.ProdutoBuilder;
 import config.Constants;
+import utils.Utils;
 import page.ControleDeProdutoPO;
 import page.LoginPO;
 
@@ -46,11 +51,7 @@ public class ControleDeProdutoTest extends BaseTest {
         assertEquals(Constants.DESCRICAO_MODAL_TITTLE_PRODUTO,
                 controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto());
 
-        ProdutoBuilder produtoBuilder = new ProdutoBuilder(controleDeProdutoPage);
-
-        produtoBuilder
-                .adicionarCodigo("")
-                .builder();
+        ProdutoBuilder.criar(controleDeProdutoPage).adicionarCodigo("").builder();
 
         assertEquals(Constants.MENSAGEM_VAZIA, controleDeProdutoPage.inputCodigo.getText());
         assertEquals(Constants.MENSAGEM_CAMPOS_OBRIGATORIOS, controleDeProdutoPage.obterSpanMensagem());
@@ -69,11 +70,7 @@ public class ControleDeProdutoTest extends BaseTest {
         assertEquals(Constants.DESCRICAO_MODAL_TITTLE_PRODUTO,
                 controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto());
 
-        ProdutoBuilder produtoBuilder = new ProdutoBuilder(controleDeProdutoPage);
-
-        produtoBuilder
-                .adicionarNome("")
-                .builder();
+        ProdutoBuilder.criar(controleDeProdutoPage).adicionarNome("").builder();
 
         assertEquals(Constants.MENSAGEM_VAZIA, controleDeProdutoPage.inputNome.getText());
         assertEquals(Constants.MENSAGEM_CAMPOS_OBRIGATORIOS, controleDeProdutoPage.obterSpanMensagem());
@@ -92,11 +89,7 @@ public class ControleDeProdutoTest extends BaseTest {
         assertEquals(Constants.DESCRICAO_MODAL_TITTLE_PRODUTO,
                 controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto());
 
-        ProdutoBuilder produtoBuilder = new ProdutoBuilder(controleDeProdutoPage);
-
-        produtoBuilder
-                .adicionarQuantidade("")
-                .builder();
+        ProdutoBuilder.criar(controleDeProdutoPage).adicionarQuantidade("").builder();
 
         assertEquals(Constants.MENSAGEM_VAZIA, controleDeProdutoPage.inputQuantidade.getText());
         assertEquals(Constants.MENSAGEM_CAMPOS_OBRIGATORIOS, controleDeProdutoPage.obterSpanMensagem());
@@ -115,11 +108,7 @@ public class ControleDeProdutoTest extends BaseTest {
         assertEquals(Constants.DESCRICAO_MODAL_TITTLE_PRODUTO,
                 controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto());
 
-        ProdutoBuilder produtoBuilder = new ProdutoBuilder(controleDeProdutoPage);
-
-        produtoBuilder
-                .adicionarValor("")
-                .builder();
+        ProdutoBuilder.criar(controleDeProdutoPage).adicionarValor("").builder();
 
         assertEquals(Constants.MENSAGEM_VAZIA, controleDeProdutoPage.inputValor.getText());
         assertEquals(Constants.MENSAGEM_CAMPOS_OBRIGATORIOS, controleDeProdutoPage.obterSpanMensagem());
@@ -138,11 +127,7 @@ public class ControleDeProdutoTest extends BaseTest {
         assertEquals(Constants.DESCRICAO_MODAL_TITTLE_PRODUTO,
                 controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto());
 
-        ProdutoBuilder produtoBuilder = new ProdutoBuilder(controleDeProdutoPage);
-
-        produtoBuilder
-                .adicionarData("")
-                .builder();
+        ProdutoBuilder.criar(controleDeProdutoPage).adicionarData("").builder();
 
         assertEquals(Constants.MENSAGEM_VAZIA, controleDeProdutoPage.inputData.getText());
         assertEquals(Constants.MENSAGEM_CAMPOS_OBRIGATORIOS, controleDeProdutoPage.obterSpanMensagem());
@@ -162,10 +147,7 @@ public class ControleDeProdutoTest extends BaseTest {
         assertTrue(controleDeProdutoPage.buttonCriar.isDisplayed());
     }
 
-    /*
-     * Caso de teste falhando. O link voltar não está retornando para a tela de
-     * login.
-     */
+    // Teste falhando, correção pendente.
     @Test
     public void TC007_deveRetornarParaATelaDeLoginAoClicarNoLinkVoltar() {
         controleDeProdutoPage.clicarNoLinkVoltar();
@@ -176,17 +158,17 @@ public class ControleDeProdutoTest extends BaseTest {
     public void TC008_deveRetornarOsUltimosProdutosCadastrados() {
         controleDeProdutoPage.clicarNoBotaoCriar();
         controleDeProdutoPage.clicarNoBotaoCriar();
-        ProdutoBuilder produtoBuilder = new ProdutoBuilder(controleDeProdutoPage);
-        produtoBuilder.builder();
 
-        produtoBuilder
+        ProdutoBuilder.criar(controleDeProdutoPage).builder();
+
+        ProdutoBuilder.criar(controleDeProdutoPage)
                 .adicionarCodigo("2")
                 .adicionarNome("nome 2")
                 .adicionarQuantidade("2")
                 .adicionarValor("2")
                 .builder();
 
-        produtoBuilder
+        ProdutoBuilder.criar(controleDeProdutoPage)
                 .adicionarCodigo("3")
                 .adicionarNome("nome 3")
                 .adicionarQuantidade("3")
@@ -206,6 +188,7 @@ public class ControleDeProdutoTest extends BaseTest {
 
     }
 
+    // Teste falhando, correção pendente.
     @Test
     public void TC009_deveRetornarOsNomesDasColunasDaTabelaPadronizadosEEmPortugues() {
 
@@ -222,12 +205,57 @@ public class ControleDeProdutoTest extends BaseTest {
 
     }
 
+    // Teste falhando, correção pendente.
+    @Test
+    public void TC010_deveFecharATelaDeCadastroDeProdutoAoClicarNoX() {
+
+        controleDeProdutoPage.clicarNoBotaoCriar();
+        controleDeProdutoPage.clicarNoBotaoCriar();
+
+        controleDeProdutoPage.clicarNoBotaoX();
+
+        assertTrue(controleDeProdutoPage.buttonCriar.isDisplayed());
+    }
+
+    // Teste falhando, correção pendente.
+    @Test
+    public void TC011_deveSairDaTelaDeCadastroDeProdutoAoClicarNoBotaoSair() {
+
+        controleDeProdutoPage.clicarNoBotaoCriar();
+        controleDeProdutoPage.clicarNoBotaoCriar();
+
+        controleDeProdutoPage.clicarNoBotaoSair();
+        // O botão sair está funcionando apenas com 2 acionamentos.
+        assertFalse(controleDeProdutoPage.modalTittleProduto.isDisplayed(),
+                "A modal de produto permaneceu aberta. Verificar falha ao clicar no botão Sair");
+    }
+
+    // Teste falhando, correção pendente.
+    @Test
+    public void TC012_deveFecharADivAlertAoClicarNoX() {
+
+        controleDeProdutoPage.clicarNoBotaoCriar();
+        controleDeProdutoPage.clicarNoBotaoCriar();
+
+        ProdutoBuilder.criar(controleDeProdutoPage)
+                .adicionarCodigo("")
+                .adicionarNome("")
+                .builder();
+
+        controleDeProdutoPage.clicarNoBotaoXDivAlert();
+
+        // O botão X não está funcionando corretamente, não executa nenhuma ação ao ser
+        // clicado.
+        assertFalse(controleDeProdutoPage.buttonXDivAlert.isDisplayed(),
+                "A Div Alert permaneceu aberta. Verificar falha ao clicar no X");
+    }
+
     /*
      * Metodo de teste responsável por validar que o sistema permite cadastrar
      * produto com todos os campos preenchidos corretamente
      */
     @Test
-    public void TC020_deveCadastrarNovoProdutoComSucesso() {
+    public void TC013_deveCadastrarNovoProdutoComSucesso() {
         controleDeProdutoPage.clicarNoBotaoCriar();
         // TODO: Remover esse clique duplo assim que o sistema for corrigido.
         controleDeProdutoPage.clicarNoBotaoCriar();
@@ -235,10 +263,19 @@ public class ControleDeProdutoTest extends BaseTest {
         String mensagemModalTittleProduto = controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto();
         assertEquals(Constants.DESCRICAO_MODAL_TITTLE_PRODUTO, mensagemModalTittleProduto);
 
-        ProdutoBuilder produtoBuilder = new ProdutoBuilder(controleDeProdutoPage);
+        ProdutoBuilder.criar(controleDeProdutoPage).builder();
 
-        produtoBuilder.builder();
-        controleDeProdutoPage.clicarNoBotaoSair();
+        Map<String, List<String>> produtosCadastrados = controleDeProdutoPage.extrairDadosTabela();
+
+        // Melhorar asserção posteriormente para identificar exatamente qual asserção
+        // falhou e por qual motivo
+        softAssert.assertTrue(produtosCadastrados.get("codigo").contains(Constants.CODIGO_PRODUTO_PADRAO));
+        softAssert.assertTrue(produtosCadastrados.get("nome").contains(Constants.NOME_PRODUTO_PADRAO));
+        softAssert.assertTrue(produtosCadastrados.get("quantidade").contains(Constants.QUANTIDADE_PRODUTO_PADRAO));
+        softAssert.assertTrue(produtosCadastrados.get("valor").contains(Constants.VALOR_PRODUTO_PADRAO));
+        softAssert.assertTrue(
+                produtosCadastrados.get("data").contains(Utils.converterParaFormatoIso(Constants.DATA_PRODUTO_PADRAO)));
+        softAssert.assertAll();
     }
 
 }

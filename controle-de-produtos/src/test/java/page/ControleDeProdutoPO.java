@@ -62,13 +62,12 @@ public class ControleDeProdutoPO extends BasePO {
     @FindBy(css = "table tr")
     public List<WebElement> linhasTabelaProduto;
 
-    public List<WebElement> obterColunasDaLinha(WebElement linha) {
-        return linha.findElements(By.cssSelector("table td"));
-    }
+    @FindBy(css = "button.close")
+    public WebElement buttonX;
+    
+    @FindBy(css = "div.alert.alert-danger.text-center.alert-dismissible > button.close")
+    public WebElement buttonXDivAlert;
 
-    public List<WebElement> obterTitulosDasColunas(WebElement linha) {
-        return linha.findElements(By.cssSelector("table th"));
-    }
     // #endregion WebElements
 
     // #region Metodos
@@ -110,6 +109,23 @@ public class ControleDeProdutoPO extends BasePO {
         return spanMensagem.getText();
     }
 
+    public List<WebElement> obterColunasDaLinha(WebElement linha) {
+        return linha.findElements(By.cssSelector("table td"));
+    }
+
+    public List<WebElement> obterTitulosDasColunas(WebElement linha) {
+        return linha.findElements(By.cssSelector("table th"));
+    }
+
+    // Metodo que executa a ação de fechar a tela de Cadastro de Produto
+    public void clicarNoBotaoX() {
+        buttonX.click();
+    }
+
+    public void clicarNoBotaoXDivAlert() {
+        buttonXDivAlert.click();
+    }
+
     /**
      * Metodo que retorna os dados da tabela de produto pela chave e valor
      */
@@ -136,19 +152,20 @@ public class ControleDeProdutoPO extends BasePO {
     public Map<String, String> extrairNomeDasColunasDaTabela() {
         // Inicializa um mapa para armazenar os nomes das colunas
         Map<String, String> nomesDasColunas = new HashMap<>();
-    
+
         try {
             // Pega a primeira linha da tabela (cabeçalho) e extrai as colunas
             List<WebElement> colunasCabecalho = obterTitulosDasColunas(linhasTabelaProduto.get(0));
-    
+
             // Para cada coluna no cabeçalho, mapeia o nome para um campo específico
             IntStream.range(0, Constants.CAMPOS_TABELA.size())
-                    .forEach(i -> nomesDasColunas.put(Constants.CAMPOS_TABELA.get(i), colunasCabecalho.get(i).getText()));
-    
+                    .forEach(i -> nomesDasColunas.put(Constants.CAMPOS_TABELA.get(i),
+                            colunasCabecalho.get(i).getText()));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-    
+
         // Retorna o mapa com os nomes das colunas
         return nomesDasColunas;
     }
