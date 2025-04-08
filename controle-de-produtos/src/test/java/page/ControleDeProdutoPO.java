@@ -67,38 +67,12 @@ public class ControleDeProdutoPO extends BasePO {
     
     @FindBy(css = "div.alert.alert-danger.text-center.alert-dismissible > button.close")
     public WebElement buttonXDivAlert;
-
     // #endregion WebElements
 
     // #region Metodos
-    /** Metodo que executa a ação de voltar */
-    public void clicarNoLinkVoltar() {
-        linkVoltar.click();
-    }
-
-    /** Metodo que executa a ação de voltar */
-    public void clicarNoLinkControleDeProdutos() {
-        linkControleDeProdutos.click();
-    }
-
     /** Metodo que retorna a mensagem da modal na tela de produto */
     public String obterTituloDaModalDeCadastroDeProduto() {
         return modalTittleProduto.getText();
-    }
-
-    /** Metodo que executa a ação abrir a modal para cadastro de produto */
-    public void clicarNoBotaoCriar() {
-        buttonCriar.click();
-    }
-
-    /** Metodo que executa a ação sair da modal de cadastro do produto */
-    public void clicarNoBotaoSair() {
-        buttonSair.click();
-    }
-
-    /** Metodo que executa a ação de cadastrar um produto */
-    public void clicarNoBotaoSalvar() {
-        buttonSalvar.click();
     }
 
     /**
@@ -115,15 +89,6 @@ public class ControleDeProdutoPO extends BasePO {
 
     public List<WebElement> obterTitulosDasColunas(WebElement linha) {
         return linha.findElements(By.cssSelector("table th"));
-    }
-
-    // Metodo que executa a ação de fechar a tela de Cadastro de Produto
-    public void clicarNoBotaoX() {
-        buttonX.click();
-    }
-
-    public void clicarNoBotaoXDivAlert() {
-        buttonXDivAlert.click();
     }
 
     /**
@@ -149,6 +114,9 @@ public class ControleDeProdutoPO extends BasePO {
         return dadosTabela;
     }
 
+    /**
+     * Metodo que retorna o nome das colunas da tabela de produtos cadastrados
+     */
     public Map<String, String> extrairNomeDasColunasDaTabela() {
         // Inicializa um mapa para armazenar os nomes das colunas
         Map<String, String> nomesDasColunas = new HashMap<>();
@@ -169,7 +137,6 @@ public class ControleDeProdutoPO extends BasePO {
         // Retorna o mapa com os nomes das colunas
         return nomesDasColunas;
     }
-
     // #endregion Metodos
 
     // #region Construtor

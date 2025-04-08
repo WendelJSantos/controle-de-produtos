@@ -47,4 +47,9 @@ public class Constants {
     public static final String NOME_COLUNA_VALOR = "Valor";
     public static final String NOME_COLUNA_DATA_DE_CRIACAO = "Data de Criação";
     public static final String NOME_COLUNA_ACAO = "Ação";
+
+    public static final int TEMPO_PADRAO_SEGUNDOS = 10;
+
+    public static final String CAMINHO_PASTA_SCREENSHOTS = "screenshots";
+
 }

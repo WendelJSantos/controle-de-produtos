@@ -60,7 +60,7 @@ public class ProdutoBuilder {
         controleDeProdutoPO.escrever(controleDeProdutoPO.inputQuantidade, quantidade);
         controleDeProdutoPO.escrever(controleDeProdutoPO.inputValor, valor);
         controleDeProdutoPO.escrever(controleDeProdutoPO.inputData, data);
-        controleDeProdutoPO.clicarNoBotaoSalvar();
+        controleDeProdutoPO.clicar(controleDeProdutoPO.buttonSalvar);
     }
 
 }

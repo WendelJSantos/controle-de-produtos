@@ -1,5 +1,6 @@
 package page;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -15,29 +16,41 @@ public abstract class BasePO {
 
     /**
      * Construtor base para criação da fabrica de elementos (PageFactory).
+     * 
      * @param driver Driver da página atual
      */
-    public BasePO (WebDriver driver){
+    public BasePO(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);    
+        PageFactory.initElements(driver, this);
     }
-    
+
     /**
      * Método que retorna o título da página atual
+     * 
      * @return retorna o título da página
      */
-    public String obterTituloDaPagina(){
+    public String obterTituloDaPagina() {
         return driver.getTitle();
     }
-    
+
     /**
      * Método que sabe escrever em qualquer WebElement do tipo input
+     * 
      * @param input Input a qual será escrito
      * @param texto Texto que será escrito no input
      */
-    public void escrever(WebElement input, String texto){
+    public void escrever(WebElement input, String texto) {
         input.clear();
         input.sendKeys(texto);
+    }
+
+    /**
+     * Método que sabe clicar qualquer WebElement clicável
+     * 
+     * @param webElement Botão que será clicado
+     */
+    public void clicar(WebElement webElement) {
+        webElement.click();
     }
 
 }

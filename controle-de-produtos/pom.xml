@@ -52,7 +52,7 @@
 				selenium-chrome-driver
 			</artifactId>
 			<version>
-				3.141.59
+				4.27.0
 			</version>
 		</dependency>
 		<dependency>
@@ -79,6 +79,17 @@
 			<scope>
 				test
 			</scope>
+		</dependency>
+		<dependency>
+			<groupId>
+				commons-io
+			</groupId>
+			<artifactId>
+				commons-io
+			</artifactId>
+			<version>
+				2.16.1
+			</version>
 		</dependency>
 		<dependency>
 			<groupId>
@@ -116,7 +127,7 @@
 				selenium-support
 			</artifactId>
 			<version>
-				3.141.59
+				4.27.0
 			</version>
 		</dependency>
 	</dependencies>
