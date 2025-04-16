@@ -1,13 +1,10 @@
 package page;
 
-import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import config.Constants;
 import utils.ScreenshotUtils;
-import utils.Utils;
 import utils.WaitUtils;
 
 /**

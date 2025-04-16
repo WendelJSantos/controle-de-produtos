@@ -35,6 +35,7 @@ dependency-reduced-pom.xml
 release.properties
 mvnw
 mvnw.cmd
+screenshots/
 
 # 🚀 Arquivos do VS Code
 .vscode/
@@ -47,6 +48,7 @@ reports/
 cucumber-reports/
 allure-results/
 allure-report/
+.allure/
 
 # 🚀 Dependências Locais
 **/node_modules/
