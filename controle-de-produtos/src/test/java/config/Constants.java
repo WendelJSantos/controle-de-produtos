@@ -21,7 +21,7 @@ public class Constants {
      * Caminho base da URL do sistema a ser testado. Host e Porta definido pela
      * extensão do Live Server
      */
-    public static final String URB_BASE = "http://127.0.0.1:5500/src/test/java/resource/projeto/sistema/login.html";
+    public static final String URB_BASE = "http://127.0.0.1:5500/controle-de-produtos/src/test/java/resource/projeto/sistema/login.html";
 
     /* Caminho relativo do driver ao prjeto referente ao path */
     public static final String CAMINHO_DRIVER = "src/test/java/resource/chromedriver_135.exe";
