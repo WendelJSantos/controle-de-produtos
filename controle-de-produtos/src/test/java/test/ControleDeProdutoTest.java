@@ -10,6 +10,7 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+import org.testng.asserts.SoftAssert;
 
 import builder.ProdutoBuilder;
 import config.Constants;
@@ -23,12 +24,13 @@ import utils.ScreenshotUtils;
 import utils.Utils;
 
 @Feature("Controle de Produtos")
-// @Description("Classe responsável pelos testes da tela de consulta e cadastro de produtos")
+// @Description("Classe responsável pelos testes da tela de consulta e cadastro
+// de produtos")
 public class ControleDeProdutoTest extends BaseTest {
 
     private ControleDeProdutoPO controleDeProdutoPage;
     private LoginPO loginPage;
-    //SoftAssert softAssert = new SoftAssert();
+    SoftAssert softAssert = new SoftAssert();
 
     /*
      * Metodo que prepara os sistema para acessar a tela de consulta e cadastro de
@@ -38,7 +40,7 @@ public class ControleDeProdutoTest extends BaseTest {
     public void setUp(TestInfo testInfo) {
         String nomeTest = testInfo.getTestMethod().get().getName();
         super.iniciar(); // Garante que o driver seja inicializado antes de usar
-        
+
         loginPage = new LoginPO(driver); // Inicializa loginPage
         controleDeProdutoPage = new ControleDeProdutoPO(driver); // Inicializa controleDeProdutoPage
         loginPage.executarAcaoDeLogar(Constants.EMAIL_VALIDO, Constants.SENHA_VALIDA, nomeTest);
@@ -54,14 +56,15 @@ public class ControleDeProdutoTest extends BaseTest {
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);
 
-        //softAssert.assertEquals(controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto(), Constants.DESCRICAO_MODAL_TITTLE_PRODUTO);
+        softAssert.assertEquals(controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto(),
+                Constants.DESCRICAO_MODAL_TITTLE_PRODUTO);
 
         ProdutoBuilder.criar(controleDeProdutoPage).adicionarCodigo("").builder();
         ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));
 
-       // softAssert.assertEquals(controleDeProdutoPage.inputCodigo.getText(), Constants.MENSAGEM_VAZIA);
-       // softAssert.assertEquals(controleDeProdutoPage.obterSpanMensagem(), Constants.MENSAGEM_CAMPOS_OBRIGATORIOS);
-       // softAssert.assertAll();
+        softAssert.assertEquals(controleDeProdutoPage.inputCodigo.getText(), Constants.MENSAGEM_VAZIA);
+        softAssert.assertEquals(controleDeProdutoPage.obterSpanMensagem(), Constants.MENSAGEM_CAMPOS_OBRIGATORIOS);
+        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -69,17 +72,19 @@ public class ControleDeProdutoTest extends BaseTest {
     @Test
     public void TC002_naoDeveCadastrarProdutoComOCampoNomeEmBranco() {
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);
-        // TODO: Remover esse clique duplo assim que o sistema for corrigido.
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);
 
-       // softAssert.assertEquals(controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto(), Constants.DESCRICAO_MODAL_TITTLE_PRODUTO);
+        softAssert.assertEquals(controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto(),
+                Constants.DESCRICAO_MODAL_TITTLE_PRODUTO);
 
         ProdutoBuilder.criar(controleDeProdutoPage).adicionarNome("").builder();
         ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));
 
-       // softAssert.assertEquals(controleDeProdutoPage.inputNome.getText(), Constants.MENSAGEM_VAZIA);
-       // softAssert.assertEquals(controleDeProdutoPage.obterSpanMensagem(), Constants.MENSAGEM_CAMPOS_OBRIGATORIOS);
-       // softAssert.assertAll();
+        softAssert.assertEquals(controleDeProdutoPage.inputNome.getText(),
+                Constants.MENSAGEM_VAZIA);
+        softAssert.assertEquals(controleDeProdutoPage.obterSpanMensagem(),
+                Constants.MENSAGEM_CAMPOS_OBRIGATORIOS);
+        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -87,18 +92,20 @@ public class ControleDeProdutoTest extends BaseTest {
     @Test
     public void TC003_naoDeveCadastrarProdutoComOCampoQuantidadeEmBranco() {
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);
-        // TODO: Remover esse clique duplo assim que o sistema for corrigido.
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);
 
-       // softAssert.assertEquals(controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto(), Constants.DESCRICAO_MODAL_TITTLE_PRODUTO);
+        softAssert.assertEquals(controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto(),
+                Constants.DESCRICAO_MODAL_TITTLE_PRODUTO);
 
         ProdutoBuilder.criar(controleDeProdutoPage).adicionarQuantidade("").builder();
 
         ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));
 
-       // softAssert.assertEquals(controleDeProdutoPage.inputQuantidade.getText(), Constants.MENSAGEM_VAZIA);
-      //  softAssert.assertEquals(controleDeProdutoPage.obterSpanMensagem(), Constants.MENSAGEM_CAMPOS_OBRIGATORIOS);
-      //  softAssert.assertAll();
+        softAssert.assertEquals(controleDeProdutoPage.inputQuantidade.getText(),
+                Constants.MENSAGEM_VAZIA);
+        softAssert.assertEquals(controleDeProdutoPage.obterSpanMensagem(),
+                Constants.MENSAGEM_CAMPOS_OBRIGATORIOS);
+        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -106,18 +113,20 @@ public class ControleDeProdutoTest extends BaseTest {
     @Test
     public void TC004_naoDeveCadastrarProdutoComOCampoValorEmBranco() {
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);
-        // TODO: Remover esse clique duplo assim que o sistema for corrigido.
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);
 
-      //  softAssert.assertEquals(controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto(), Constants.DESCRICAO_MODAL_TITTLE_PRODUTO);
+        softAssert.assertEquals(controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto(),
+                Constants.DESCRICAO_MODAL_TITTLE_PRODUTO);
 
         ProdutoBuilder.criar(controleDeProdutoPage).adicionarValor("").builder();
 
         ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));
 
-       // softAssert.assertEquals(controleDeProdutoPage.inputValor.getText(), Constants.MENSAGEM_VAZIA);
-       // softAssert.assertEquals(controleDeProdutoPage.obterSpanMensagem(), Constants.MENSAGEM_CAMPOS_OBRIGATORIOS);
-       // softAssert.assertAll();
+        softAssert.assertEquals(controleDeProdutoPage.inputValor.getText(),
+                Constants.MENSAGEM_VAZIA);
+        softAssert.assertEquals(controleDeProdutoPage.obterSpanMensagem(),
+                Constants.MENSAGEM_CAMPOS_OBRIGATORIOS);
+        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -125,18 +134,20 @@ public class ControleDeProdutoTest extends BaseTest {
     @Test
     public void TC005_naoDeveCadastrarProdutoComOCampoDataEmBranco() {
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);
-        // TODO: Remover esse clique duplo assim que o sistema for corrigido.
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);
 
-      //  softAssert.assertEquals(controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto(), Constants.DESCRICAO_MODAL_TITTLE_PRODUTO);
+        softAssert.assertEquals(controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto(),
+                Constants.DESCRICAO_MODAL_TITTLE_PRODUTO);
 
         ProdutoBuilder.criar(controleDeProdutoPage).adicionarData("").builder();
 
         ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));
 
-       // softAssert.assertEquals(controleDeProdutoPage.inputData.getText(), Constants.MENSAGEM_VAZIA);
-       // softAssert.assertEquals(controleDeProdutoPage.obterSpanMensagem(), Constants.MENSAGEM_CAMPOS_OBRIGATORIOS);
-       // softAssert.assertAll();
+        softAssert.assertEquals(controleDeProdutoPage.inputData.getText(),
+                Constants.MENSAGEM_VAZIA);
+        softAssert.assertEquals(controleDeProdutoPage.obterSpanMensagem(),
+                Constants.MENSAGEM_CAMPOS_OBRIGATORIOS);
+        softAssert.assertAll();
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -188,7 +199,7 @@ public class ControleDeProdutoTest extends BaseTest {
                 .adicionarQuantidade("3")
                 .adicionarValor("3")
                 .builder();
-        ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));        
+        ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));
 
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonSair);
         ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));
@@ -197,10 +208,10 @@ public class ControleDeProdutoTest extends BaseTest {
 
         // Melhorar asserção posteriormente para identificar exatamente qual asserção
         // falhou e por qual motivo
-       // softAssert.assertTrue(produtosCadastrados.get("valor").contains("50.0"));
-       // softAssert.assertTrue(produtosCadastrados.get("valor").contains("2"));
-       // softAssert.assertTrue(produtosCadastrados.get("valor").contains("3"));
-       // softAssert.assertAll();
+        softAssert.assertTrue(produtosCadastrados.get("valor").contains("50.0"));
+        softAssert.assertTrue(produtosCadastrados.get("valor").contains("2"));
+        softAssert.assertTrue(produtosCadastrados.get("valor").contains("3"));
+        softAssert.assertAll();
 
     }
 
@@ -214,14 +225,18 @@ public class ControleDeProdutoTest extends BaseTest {
 
         ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));
 
-        //softAssert.assertEquals(nomeColuna.get("codigo"), Constants.NOME_COLUNA_CODIGO);
-        //softAssert.assertEquals(nomeColuna.get("nome"), Constants.NOME_COLUNA_NOME);
-       // softAssert.assertEquals(nomeColuna.get("quantidade"), Constants.NOME_COLUNA_QUANTIDADE);
-       // softAssert.assertEquals(nomeColuna.get("valor"), Constants.NOME_COLUNA_VALOR);
-       // softAssert.assertEquals(nomeColuna.get("data"), Constants.NOME_COLUNA_DATA_DE_CRIACAO);
-       // softAssert.assertEquals(nomeColuna.get("acao"), Constants.NOME_COLUNA_ACAO);
+        softAssert.assertEquals(nomeColuna.get("codigo"),
+                Constants.NOME_COLUNA_CODIGO);
+        softAssert.assertEquals(nomeColuna.get("nome"), Constants.NOME_COLUNA_NOME);
+        softAssert.assertEquals(nomeColuna.get("quantidade"),
+                Constants.NOME_COLUNA_QUANTIDADE);
+        softAssert.assertEquals(nomeColuna.get("valor"),
+                Constants.NOME_COLUNA_VALOR);
+        softAssert.assertEquals(nomeColuna.get("data"),
+                Constants.NOME_COLUNA_DATA_DE_CRIACAO);
+        softAssert.assertEquals(nomeColuna.get("acao"), Constants.NOME_COLUNA_ACAO);
 
-       // softAssert.assertAll();
+        softAssert.assertAll();
 
     }
 
@@ -232,7 +247,7 @@ public class ControleDeProdutoTest extends BaseTest {
     public void TC010_deveFecharATelaDeCadastroDeProdutoAoClicarNoX() {
 
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);
-        controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);        
+        controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);
         ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));
 
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonX);
@@ -255,7 +270,8 @@ public class ControleDeProdutoTest extends BaseTest {
         ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));
 
         // O botão sair está funcionando apenas com 2 acionamentos.
-        assertFalse(controleDeProdutoPage.modalTittleProduto.isDisplayed(), "A modal de produto permaneceu aberta. Verificar falha ao clicar no botão Sair");
+        assertFalse(controleDeProdutoPage.modalTittleProduto.isDisplayed(),
+                "A modal de produto permaneceu aberta. Verificar falha ao clicar no botão Sair");
     }
 
     // Teste falhando, correção pendente.
@@ -278,7 +294,8 @@ public class ControleDeProdutoTest extends BaseTest {
 
         // O botão X não está funcionando corretamente, não executa nenhuma ação ao ser
         // clicado.
-        assertFalse(controleDeProdutoPage.buttonXDivAlert.isDisplayed(), "A Div Alert permaneceu aberta. Verificar falha ao clicar no X");
+        assertFalse(controleDeProdutoPage.buttonXDivAlert.isDisplayed(),
+                "A Div Alert permaneceu aberta. Verificar falha ao clicar no X");
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -286,10 +303,10 @@ public class ControleDeProdutoTest extends BaseTest {
     @Test
     public void TC013_deveCadastrarNovoProdutoComSucesso() {
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);
-        // TODO: Remover esse clique duplo assim que o sistema for corrigido.
         controleDeProdutoPage.clicar(controleDeProdutoPage.buttonCriar);
 
-       // softAssert.assertEquals(controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto(), Constants.DESCRICAO_MODAL_TITTLE_PRODUTO);
+        softAssert.assertEquals(controleDeProdutoPage.obterTituloDaModalDeCadastroDeProduto(),
+                Constants.DESCRICAO_MODAL_TITTLE_PRODUTO);
 
         ProdutoBuilder.criar(controleDeProdutoPage).builder();
 
@@ -300,12 +317,13 @@ public class ControleDeProdutoTest extends BaseTest {
 
         // Melhorar asserção posteriormente para identificar exatamente qual asserção
         // falhou e por qual motivo
-       // softAssert.assertTrue(produtosCadastrados.get("codigo").contains(Constants.CODIGO_PRODUTO_PADRAO));
-        //softAssert.assertTrue(produtosCadastrados.get("nome").contains(Constants.NOME_PRODUTO_PADRAO));
-        //softAssert.assertTrue(produtosCadastrados.get("quantidade").contains(Constants.QUANTIDADE_PRODUTO_PADRAO));
-        //softAssert.assertTrue(produtosCadastrados.get("valor").contains(Constants.VALOR_PRODUTO_PADRAO));
-        //softAssert.assertTrue(produtosCadastrados.get("data").contains(Utils.converterParaFormatoIso(Constants.DATA_PRODUTO_PADRAO)));
-        //softAssert.assertAll();
+        softAssert.assertTrue(produtosCadastrados.get("codigo").contains(Constants.CODIGO_PRODUTO_PADRAO));
+        softAssert.assertTrue(produtosCadastrados.get("nome").contains(Constants.NOME_PRODUTO_PADRAO));
+        softAssert.assertTrue(produtosCadastrados.get("quantidade").contains(Constants.QUANTIDADE_PRODUTO_PADRAO));
+        softAssert.assertTrue(produtosCadastrados.get("valor").contains(Constants.VALOR_PRODUTO_PADRAO));
+        softAssert.assertTrue(
+                produtosCadastrados.get("data").contains(Utils.converterParaFormatoIso(Constants.DATA_PRODUTO_PADRAO)));
+        softAssert.assertAll();
     }
 
 }

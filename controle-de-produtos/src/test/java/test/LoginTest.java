@@ -1,7 +1,6 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,8 +15,6 @@ import page.LoginPO;
 import utils.ScreenshotUtils;
 import utils.Utils;
 
-
-
 /**
  * Classe responsável pelos testes da tela de login do sistema
  */
@@ -30,11 +27,6 @@ public class LoginTest extends BaseTest {
     public void setUp(TestInfo testInfo) {
         super.iniciar(); // Garante que o driver seja inicializado antes de usar
         loginPage = new LoginPO(driver); // Inicializa loginPage
-    }
-
-    @Test
-    public void testeSimples() {
-        assertTrue(true);
     }
 
     @Severity(SeverityLevel.NORMAL)
@@ -57,7 +49,7 @@ public class LoginTest extends BaseTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Teste para validação do login com o campo Email vazio.")
-    @Test   
+    @Test
     public void TC003_naoDeveLogarNoSistemaComOCampoEmailVazio() {
         loginPage.executarAcaoDeLogar("", Constants.SENHA_VALIDA, Utils.getNomeMetodoChamada(2));
         assertEquals(Constants.MENSAGEM_CAMPOS_EM_BRANCO, loginPage.obterMensagemExcecao());
