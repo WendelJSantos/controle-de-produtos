@@ -1,6 +1,7 @@
 package utils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,6 +14,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import config.Constants;
+import io.qameta.allure.Allure;
 
 public class ScreenshotUtils {
 
@@ -42,9 +44,18 @@ public class ScreenshotUtils {
 
             System.out.println("Screenshot salvo em: " + destino.getAbsolutePath());
 
+              // Anexa a imagem ao relatório Allure
+              try (FileInputStream fis = new FileInputStream(destino)) {
+                Allure.addAttachment("Screenshot - Allure - " + nomeDoTeste, "image/png", fis, "png");
+            }
+
         } catch (IOException e) {
             System.err.println("Erro ao salvar screenshot: " + e.getMessage());
         }
+
     }
 
+
 }
+
+

@@ -220,11 +220,11 @@ public class ControleDeProdutoTest extends BaseTest {
     @Description("Teste para validação do pardão dos nomes das colunas da tabela.")
     @Test
     public void TC009_deveRetornarOsNomesDasColunasDaTabelaPadronizadosEEmPortugues() {
-
+        
         Map<String, String> nomeColuna = controleDeProdutoPage.extrairNomeDasColunasDaTabela();
 
-        ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));
-
+        //ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));
+        
         softAssert.assertEquals(nomeColuna.get("codigo"),
                 Constants.NOME_COLUNA_CODIGO);
         softAssert.assertEquals(nomeColuna.get("nome"), Constants.NOME_COLUNA_NOME);
@@ -235,8 +235,7 @@ public class ControleDeProdutoTest extends BaseTest {
         softAssert.assertEquals(nomeColuna.get("data"),
                 Constants.NOME_COLUNA_DATA_DE_CRIACAO);
         softAssert.assertEquals(nomeColuna.get("acao"), Constants.NOME_COLUNA_ACAO);
-
-        softAssert.assertAll();
+        softAssert.assertAll();   
 
     }
 

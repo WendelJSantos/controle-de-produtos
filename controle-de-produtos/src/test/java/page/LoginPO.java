@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import utils.ScreenshotUtils;
 import utils.WaitUtils;
 
 /**
@@ -52,7 +51,7 @@ public class LoginPO extends BasePO {
         escrever(inputEmail, email);
         escrever(inputSenha, senha);
 
-        ScreenshotUtils.capturarScreenshot(driver, nomeTest + "_PreenchimentoDoFormularioDeLogin");
+        //ScreenshotUtils.capturarScreenshot(driver, nomeTest + "_PreenchimentoDoFormularioDeLogin");
         WebElement botaoEntrar = wait.esperarElementoVisivelEClicavel(buttonEntrar);
         clicar(botaoEntrar);
     }

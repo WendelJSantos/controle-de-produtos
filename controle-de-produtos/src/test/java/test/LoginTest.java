@@ -80,7 +80,7 @@ public class LoginTest extends BaseTest {
     public void TC006_naoDeveLogarNoSistemaComOCampoSenhaInvalido() {
         loginPage.executarAcaoDeLogar(Constants.EMAIL_VALIDO, "teste", Utils.getNomeMetodoChamada(2));
         assertEquals(Constants.MENSAGEM_CAMPOS_INVALIDOS, loginPage.obterMensagemExcecao());
-        ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));
+        ScreenshotUtils.capturarScreenshot(driver, Utils.getNomeMetodoChamada(2));        
     }
 
     @Severity(SeverityLevel.CRITICAL)
